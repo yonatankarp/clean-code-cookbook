@@ -1,0 +1,19 @@
+[versions]
+coroutines = "1.9.0"
+kotlin = "2.0.21"
+spotless = "6.25.0"
+
+[libraries]
+kotlin_core = { module = "org.jetbrains.kotlin:kotlin-stdlib" }
+kotlinx_coroutines_core = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-core", version.ref = "coroutines" }
+
+[plugins]
+kotlin_jvm = { id = "org.jetbrains.kotlin.jvm", version.ref = "kotlin" }
+spotless = { id = "com.diffplug.spotless", version.ref = "spotless" }
+
+[bundles]
+
+kotlin_all = [
+    "kotlin_core",
+    "kotlinx_coroutines_core",
+]
