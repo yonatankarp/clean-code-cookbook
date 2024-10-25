@@ -1,6 +1,9 @@
 # Clean-Code Cookbook
 
-Kotlin implementation of the [Clean Code Cookbook](https://github.com/mcsee/clean-code-cookbook) recipes
+Kotlin implementation of the
+[Clean Code Cookbook](https://github.com/mcsee/clean-code-cookbook) recipes
+
+![Clean Code Cookbook](clean-code-cookbook-cover.png)
 
 ## Chapters
 
@@ -27,3 +30,8 @@ Kotlin implementation of the [Clean Code Cookbook](https://github.com/mcsee/clea
 - [Chapter 23 - Metaprogramming](src/main/kotlin/com/yonatankarp/cleancodecookbook/chapter23/README.md)
 - [Chapter 24 - Types](src/main/kotlin/com/yonatankarp/cleancodecookbook/chapter24/README.md)
 - [Chapter 25 - Security](src/main/kotlin/com/yonatankarp/cleancodecookbook/chapter25/README.md)
+
+---
+
+All the code in this repository is a Kotlin implementation of the Clean Code
+Cookbook, written by Yonatan Karp-Rudin.
