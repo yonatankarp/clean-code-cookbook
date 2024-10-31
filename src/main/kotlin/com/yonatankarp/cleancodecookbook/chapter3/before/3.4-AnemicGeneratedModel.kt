@@ -1,33 +1,60 @@
 package com.yonatankarp.cleancodecookbook.chapter3.before
 
-object Validators {
-    fun getIntegerValidator(value: Int): Int = TODO()
-    fun getStringValidator(value: String): String = TODO()
-    fun getBooleanValidator(value: Boolean): Boolean = TODO()
+
+import kotlin.reflect.KClass
+import kotlin.reflect.KMutableProperty
+import kotlin.reflect.full.declaredMemberProperties
+import kotlin.reflect.full.findAnnotation
+
+@Target(AnnotationTarget.PROPERTY)
+annotation class ValidateWith(val validator: KClass<out Validator<*>>)
+
+interface Validator<T> {
+    fun validate(value: T): T
 }
 
-data class Employee(
-    private var _id: Int = 0,
-    private var _name: String = "",
-    private var _currentlyWorking: Boolean = false
-) {
-    var id: Int
-        get() = _id
-        set(value) {
-            _id = Validators.getIntegerValidator(value)
-        }
+object IntegerValidator : Validator<Int> {
+    override fun validate(value: Int) = value
+}
 
-    var name: String
-        get() = _name
-        set(value) {
-            _name = Validators.getStringValidator(value)
-        }
+object StringValidator : Validator<String> {
+    override fun validate(value: String) = value
+}
 
-    var currentlyWorking: Boolean
-        get() = _currentlyWorking
-        set(value) {
-            _currentlyWorking = Validators.getBooleanValidator(value)
-        }
+object BooleanValidator : Validator<Boolean> {
+    override fun validate(value: Boolean) = value
+}
+
+class Employee {
+    @ValidateWith(IntegerValidator::class)
+    var id: Int = 0
+
+    @ValidateWith(StringValidator::class)
+    var name: String = ""
+
+    @ValidateWith(BooleanValidator::class)
+    var currentlyWorking: Boolean = false
+
+    init {
+        validateProperties()
+    }
+
+    private fun validateProperties() {
+        val instance = this
+        this::class.declaredMemberProperties
+            .filterIsInstance<KMutableProperty<*>>()
+            .forEach { property ->
+                property.findAnnotation<ValidateWith>()
+                    ?.validator
+                    ?.objectInstance
+                    ?.let { it as? Validator<Any> }
+                    ?.let { validator ->
+                        property.getter.call(instance)
+                            ?.let { validator.validate(it) }
+                            ?.let { validatedValue -> property.setter.call(instance, validatedValue) }
+                    }
+            }
+    }
 }
 
 fun main() {
