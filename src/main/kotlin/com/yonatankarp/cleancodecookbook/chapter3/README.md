@@ -27,10 +27,25 @@
 
 ### 3.6 Removing DTOs
 
+- [DTO](before/3.6-DTO.kt)
+- [Full Object](after/3.6-FullObject.kt)
+
 ### 3.7 Completing Empty Constructors
+
+- [Empty Constructor](before/3.7-Empty.kt)
+- [Object's Essence](after/3.7-Essence.kt)
 
 ### 3.8 Removing Getters
 
+- [Getters](before/3.8-Getters.kt)
+- [Good Model](after/3.8-GoodModel.kt)
+
 ### 3.9 Preventing Object Orgy
 
+- [Intimate](before/3.9-Intimate.kt)
+- [Respect](after/3.9-Respect.kt)
+
 ### 3.10 Removing Dynamic Properties
+
+- [Dynamic Properties](before/3.10-Dynamic.kt)
+- [Defined Properties](after/3.10-Defined.kt)
