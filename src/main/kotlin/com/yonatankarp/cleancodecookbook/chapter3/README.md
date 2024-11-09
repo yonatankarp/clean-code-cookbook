@@ -1,5 +1,8 @@
 # Chapter 3 - Anemic Models
 
+[The Reading Club Podcast: Chapter 3](https://open.spotify.com/episode/1l9yoWtSoCFIAro3VmK8Xk?si=c3f1ac825ab94be8)
+
+
 ### 3.1 Converting Anemic Objects to Rich Objects
 
 - [Anemic model](before/3.1-AnemicModel.kt)
